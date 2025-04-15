@@ -9,3 +9,20 @@
  * if cancelFn is not invoked within the specified delay t, 
  * fn should be executed with the provided args as arguments.
  */
+
+type JSONValue = null | boolean | number | string | JSONValue[] | { [key: string]: JSONValue};
+
+type Fn = (...args: JSONValue[]) => void
+
+function cancellable(fn: Fn, args: JSONValue[], t: number): Function {
+
+    const timeoutId = setTimeout(() => {
+        fn(...args);
+    }, t);
+
+    //return cancel function
+    return function() {
+        clearTimeout(timeoutId);
+    }
+
+}
