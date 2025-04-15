@@ -14,7 +14,7 @@ type JSONValue = null | boolean | number | string | JSONValue[] | { [key: string
 
 type Fn = (...args: JSONValue[]) => void
 
-function cancellable(fn: Fn, args: JSONValue[], t: number): Function {
+function cancellable1(fn: Fn, args: JSONValue[], t: number): Function {
 
     const timeoutId = setTimeout(() => {
         fn(...args);
